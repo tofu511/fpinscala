@@ -14,10 +14,9 @@ class MyModuleTest extends FunSuite {
     Fixture(4, 3),
     Fixture(5, 5)
   )
-  fixtures.foreach{ f =>
+  fixtures.foreach { f =>
     test(s"fib(${f.param}) returns ${f.result}") {
       assert(MyModule.fib(f.param) === f.result)
     }
   }
-
 }
