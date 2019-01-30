@@ -68,4 +68,8 @@ class ListTest extends FunSuite with Matchers {
   test("product2") {
     List.product2(doubleList) should be (6.0)
   }
+
+  test("tail") {
+    List.tail(intList) should be (Cons(2, Cons(3, Nil)))
+  }
 }
