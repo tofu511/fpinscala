@@ -128,4 +128,24 @@ class ListTest extends FunSuite with Matchers {
     val l = Cons(4, Cons(5, Cons(6, Nil)))
     List.append2(intList, l) should be (Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Cons(6, Nil)))))))
   }
+
+  test("add1") {
+    List.add1(Cons(1, Cons(2, Nil))) should be (Cons(2, Cons(3, Nil)))
+    List.add1(Cons(5, Cons(10, Nil))) should be (Cons(6, Cons(11, Nil)))
+  }
+
+  test("doubleToString") {
+    List.doubleToString(doubleList) should be (Cons("1.0", Cons("2.0", Cons("3.0", Nil))))
+  }
+
+  test("map") {
+    List.map(intList)(x => x + 1) should be (Cons(2, Cons(3, Cons(4, Nil))))
+    List.map(intList)(x => x * x) should be (Cons(1, Cons(4, Cons(9, Nil))))
+  }
+
+  test("filter") {
+    List.filter(intList)(x => x % 2 == 0) should be (Cons(2, Nil))
+    List.filter(intList)(x => x % 2 != 0) should be (Cons(1, Cons(3, Nil)))
+  }
+
 }
