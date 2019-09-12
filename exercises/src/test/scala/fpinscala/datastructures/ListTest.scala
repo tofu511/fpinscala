@@ -72,4 +72,24 @@ class ListTest extends FunSuite with Matchers {
   test("tail") {
     List.tail(intList) should be (Cons(2, Cons(3, Nil)))
   }
+
+  test("setHead") {
+    List.setHead(intList, 10) should be (Cons(10, Cons(2, Cons(3, Nil))))
+    List.setHead(Nil, 10) shouldBe Nil
+  }
+
+  test("drop") {
+    List.drop(intList, -1) should be (intList)
+    List.drop(intList, 1) should be (Cons(2, Cons(3, Nil)))
+    List.drop(intList, 2) should be (Cons(3, Nil))
+  }
+
+  test("dropWhile") {
+    val f: Int => Boolean = x => x < 2
+    List.dropWhile(intList, f) should be (Cons(2, Cons(3, Nil)))
+  }
+
+  test("init") {
+    List.init(intList) should be (Cons(1, Cons(2, Nil)))
+  }
 }
