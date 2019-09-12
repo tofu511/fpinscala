@@ -91,5 +91,41 @@ class ListTest extends FunSuite with Matchers {
 
   test("init") {
     List.init(intList) should be (Cons(1, Cons(2, Nil)))
+    List.init(Cons(1, Cons(2, Cons(3, Cons(4, Nil))))) should be (Cons(1, Cons(2, Cons(3, Nil))))
+  }
+
+  test("length") {
+    List.length(intList) should be (3)
+    List.length(Cons(1, Cons(2, Nil))) should be (2)
+  }
+
+  test("foldLeft") {
+    List.foldLeft(intList, 0)(_ + _) should be (6)
+    List.foldLeft(intList, 1)(_ * _) should be (6)
+  }
+
+  test("sum3") {
+    List.sum3(intList) should be (6)
+    List.sum3(Cons(10, Cons(50, Nil))) should be (60)
+  }
+
+  test("product3") {
+    List.product3(intList) should be (6)
+    List.product3(Cons(10, Cons(50, Nil))) should be (500)
+  }
+
+  test("length2") {
+    List.length2(intList) should be (3)
+    List.length2(Cons(1, Cons(2, Cons(3, Cons(4, Nil))))) should be (4)
+  }
+
+  test("reverse") {
+    List.reverse(intList) should be (Cons(3, Cons(2, Cons(1, Nil))))
+    List.reverse(Cons("a", Cons("b", Cons("c", Nil)))) should be (Cons("c", Cons("b", Cons("a", Nil))))
+  }
+
+  test("append2") {
+    val l = Cons(4, Cons(5, Cons(6, Nil)))
+    List.append2(intList, l) should be (Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Cons(6, Nil)))))))
   }
 }

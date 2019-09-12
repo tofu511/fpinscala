@@ -85,9 +85,23 @@ object List { // `List` companion object. Contains functions for creating and wo
     loop(l)
   }
 
-  def length[A](l: List[A]): Int = ???
+  def length[A](l: List[A]): Int = foldRight(l, 0)((_, acc) => acc + 1)
 
-  def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = ???
+  def foldLeft[A,B](l: List[A], z: B)(f: (B, A) => B): B = l match {
+    case Nil => z
+    case Cons(h, t) => foldLeft(t, f(z, h))(f)
+  }
+
+  def sum3(l: List[Int]): Int = foldLeft(l, 0)(_ + _)
+
+  def product3(l: List[Int]): Int = foldLeft(l, 1)(_ * _)
+
+  def length2[A](l: List[A]): Int = foldLeft(l, 0)((acc, _) => acc + 1)
+
+  def reverse[A](l: List[A]): List[A] = foldLeft(l, List[A]())((acc, y) => Cons(y, acc))
+
+  def append2[A](x: List[A], y: List[A]): List[A] = foldRight(x, y)(Cons(_,_))
+//  def append3[A](x: List[A], y: List[A]): List[A] = foldLeft(y, x)(Cons(_,_))
 
   def map[A,B](l: List[A])(f: A => B): List[B] = ???
 }
