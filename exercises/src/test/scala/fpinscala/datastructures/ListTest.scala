@@ -148,4 +148,14 @@ class ListTest extends FunSuite with Matchers {
     List.filter(intList)(x => x % 2 != 0) should be (Cons(1, Cons(3, Nil)))
   }
 
+  test("addPairWise") {
+    List.addPairWise(intList, intList) should be (Cons(2, Cons(4, Cons(6, Nil))))
+    List.addPairWise(Cons(1, Cons(10, Nil)), Cons(6, Cons(2, Nil))) should be (Cons(7, Cons(12, Nil)))
+  }
+
+  test("zipWith") {
+    List.zipWith(intList, intList)((x, y) => x + y) should be (Cons(2, Cons(4, Cons(6, Nil))))
+    List.zipWith(intList, intList)((x, y) => x * y) should be (Cons(1, Cons(4, Cons(9, Nil))))
+  }
+
 }
