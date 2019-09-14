@@ -23,4 +23,9 @@ class OptionTest extends FunSuite {
     val result = Option.map2(Some(3), Some(2))((a:Int, b:Int) => a + b)
     assert(result === Some(5))
   }
+
+  test("sequence") {
+    assert(Option.sequence(List(Some(1), Some(2))) === Some(List(1,2)))
+    assert(Option.sequence(List(None)) === None)
+  }
 }
